@@ -27,50 +27,15 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: const Color(0xff1D1E33),
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text(
-                          'MALE',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF8D8E98),
-                          ),
-                        )
-                      ],
-                    ),
+                    cardChild:
+                        IconContent(icon: FontAwesomeIcons.mars, text: 'MALE'),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: reusableCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text(
-                          'FEMALE',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF8D8E98),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                      color: reusableCardColor,
+                      cardChild: IconContent(
+                          icon: FontAwesomeIcons.venus, text: 'FEMALE')),
                 )
               ],
             ),
@@ -122,5 +87,33 @@ class ReusableCard extends StatelessWidget {
           color: color,
         ),
         child: cardChild,
+      );
+}
+
+class IconContent extends StatelessWidget {
+  IconContent({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 80.0,
+          ),
+          const SizedBox(
+            height: 15.0,
+          ),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Color(0xFF8D8E98),
+            ),
+          )
+        ],
       );
 }

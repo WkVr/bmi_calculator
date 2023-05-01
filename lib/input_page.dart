@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+const bottomContainerHeight = 80.0;
+const reusableCardColor = Color(0xff1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -20,49 +25,94 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReuseableCard(
+                  child: ReusableCard(
                     color: const Color(0xff1D1E33),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80.0,
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReuseableCard(
-                    color: const Color(0xff1D1E33),
+                  child: ReusableCard(
+                    color: reusableCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          FontAwesomeIcons.venus,
+                          size: 80.0,
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Text(
+                          'FEMALE',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
             ),
           ),
           Expanded(
-            child: ReuseableCard(
-              color: const Color(0xff1D1E33),
+            child: ReusableCard(
+              color: reusableCardColor,
             ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReuseableCard(
-                    color: const Color(0xff1D1E33),
+                  child: ReusableCard(
+                    color: reusableCardColor,
                   ),
                 ),
                 Expanded(
-                  child: ReuseableCard(
-                    color: const Color(0xff1D1E33),
+                  child: ReusableCard(
+                    color: reusableCardColor,
                   ),
                 )
               ],
             ),
           ),
+          Container(
+            color: bottomContainerColor,
+            margin: const EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          )
         ],
       ),
     );
   }
 }
 
-class ReuseableCard extends StatelessWidget {
-  ReuseableCard({required this.color});
+class ReusableCard extends StatelessWidget {
+  ReusableCard({required this.color, this.cardChild});
 
-  Color? color;
+  final Color? color;
+  final Widget? cardChild;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -71,5 +121,6 @@ class ReuseableCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: color,
         ),
+        child: cardChild,
       );
 }
